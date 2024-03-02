@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build">
+
+<!-- APPLICATION METADATA -->
+<property name="masysma.target" value="."/>
+<property name="mdpc.name"      value="mdvl-aes67-linux-daemon"/>
+<property name="mdpc.section"   value="audio"/>
+<property name="mdpc.arch"      value="any"/>
+<property name="mdpc.descrs"
+			value="RAVENNA/AES67 driver - free userspace daemon"/>
+<property name="mdpc.bdep"
+	>libavahi-client-dev, libboost-test-dev, libboost-program-options-dev,
+	libboost-log-dev, libboost-thread-dev, libboost-system-dev,
+	libboost-dev, config-package-dev, cmake, libsystemd-dev</property>
+<property name="mdpc.recommends" value="dvml-ravenna-alsa-lkm-dkms"/>
+<property name="mdpc.descrl">
+ AES67 Linux Daemon is a Linux implementation of AES67 interoperability
+ standard used to distribute and synchronize real time audio over Ethernet.
+ .
+ The daemon is a Linux process that uses the Merging Technologies ALSA
+ RAVENNA/AES67 Driver to handle PTP synchronization and RTP streams and exposes
+ a REST interface for configuration and status monitoring.
+</property>
+<property name="mdpc.copyright"
+	value="Copyright (c) 2019 2020 Andrea Bondavalli. All rights reserved."
+	/>
+<property name="mdpc.lblock">
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+</property>
+
+<property name="mdpc.file.install">
+src/daemon/aes67-daemon /usr/bin
+src/webui/dist /usr/share/mdvl-aes67-linux-daemon/webui
+</property>
+
+<target name="download">
+	<masysma_require_artifact masysmaartifact="aes67-linux-daemon.git"
+		masysmaatarget="src" 
+		masysmaadef="https://github.com/bondagit/aes67-linux-daemon.git"/>
+	<!-- alternatively follow the procedure outlined in build.sh -->
+	<masysma_require_artifact masysmaartifact="aes67-webui.tar.gz"
+		masysmaatarget="src/webui"
+		masysmaadef="https://github.com/bondagit/aes67-linux-daemon/releases/latest/download/webui.tar.gz"/>
+	<masysma_require_artifact masysmaartifact="ravenna-alsa-lkm.git"
+		masysmaatarget="src/3rdparty/ravenna-alsa-lkm"
+		masysmaabranch="aes67-daemon"
+		masysmaadef="https://github.com/bondagit/ravenna-alsa-lkm.git"/>
+	<masysma_require_artifact masysmaartifact="cpp-httplib.git"
+		masysmaatarget="src/3rdparty/cpp-httplib"
+		masysmaadef="https://github.com/bondagit/cpp-httplib.git"/>
+</target>
+
+<target name="build" depends="download">
+	<exec executable="cmake" dir="src/daemon" failonerror="true">
+		<arg value="-DCPP_HTTPLIB_DIR=../3rdparty/cpp-httplib"/>
+		<arg value="-DRAVENNA_ALSA_LKM_DIR=../3rdparty/ravenna-alsa-lkm"/>
+		<arg value="-DWITH_AVAHI=ON"/>
+		<arg value="-DFAKE_DRIVER=OFF"/>
+		<arg value="-DWITH_SYSTEMD=ON"/>
+		<arg value="."/>
+	</exec>
+	<exec executable="make" dir="src/daemon" failonerror="true">
+		<arg value="-j16"/>
+	</exec>
+</target>
+
+<target name="dist-clean" depends="clean">
+	<delete dir="src" failonerror="false"/>
+</target>
+
+<!-- CI INTEGRATION -->
+<target name="autoci" depends="autopackage"/>
+
+<!-- CONSTANT TPL IMPORT -->
+<property environment="env"/>
+<condition property="masysma.internal.includepath.rel" value="${env.MDVL_CI_PHOENIX_ROOT}" else=".."><isset property="env.MDVL_CI_PHOENIX_ROOT"/></condition>
+<property name="masysma.internal.includepath" location="${masysma.internal.includepath.rel}"/>
+<property name="masysma.internal.loadpath" value="${masysma.internal.includepath}/co-build/ant-build-template.xml"/>
+<condition property="masysma.internal.load" value="file://${masysma.internal.loadpath}" else="https://raw.githubusercontent.com/m7a/co-build/master/ant-build-template.xml"><resourceexists><file file="${masysma.internal.loadpath}"/></resourceexists></condition>
+<import><url url="${masysma.internal.load}"/></import>
+
+</project>
