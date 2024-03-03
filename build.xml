@@ -28,6 +28,7 @@
 
 <property name="mdpc.file.install">
 src/daemon/aes67-daemon /usr/bin
+src/daemon/scripts /usr/share/mdvl-aes67-linux-daemon
 src/webui/dist /usr/share/mdvl-aes67-linux-daemon/webui
 </property>
 

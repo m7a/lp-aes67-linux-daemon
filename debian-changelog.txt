@@ -1,3 +1,9 @@
+mdvl-aes67-linux-daemon (1.0.1) stable; urgency=medium
+
+  * Add scripts to installed files.
+
+ -- Ma_Sys.ma Linux-Fan <info@masysma.net>  Sun, 03 Mar 2024 20:34:52 +0100
+
 mdvl-aes67-linux-daemon (1.0.0) stable; urgency=medium
 
   * Package created with MDPC 2
