@@ -1,3 +1,9 @@
+mdvl-aes67-linux-daemon (1.0.2) stable; urgency=medium
+
+  * Update to build with clang (it is required!!)
+
+ -- Ma_Sys.ma Linux-Fan <info@masysma.net>  Tue, 05 Mar 2024 19:12:31 +0100
+
 mdvl-aes67-linux-daemon (1.0.1) stable; urgency=medium
 
   * Add scripts to installed files.

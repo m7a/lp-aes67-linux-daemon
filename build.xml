@@ -4,13 +4,13 @@
 <!-- APPLICATION METADATA -->
 <property name="masysma.target" value="."/>
 <property name="mdpc.name"      value="mdvl-aes67-linux-daemon"/>
-<property name="mdpc.section"   value="audio"/>
+<property name="mdpc.section"   value="sound"/>
 <property name="mdpc.arch"      value="any"/>
 <property name="mdpc.descrs"
 			value="RAVENNA/AES67 driver - free userspace daemon"/>
 <property name="mdpc.bdep"
 	>libavahi-client-dev, libboost-test-dev, libboost-program-options-dev,
-	libboost-log-dev, libboost-thread-dev, libboost-system-dev,
+	libboost-log-dev, libboost-thread-dev, libboost-system-dev, clang,
 	libboost-dev, config-package-dev, cmake, libsystemd-dev</property>
 <property name="mdpc.recommends" value="dvml-ravenna-alsa-lkm-dkms"/>
 <property name="mdpc.descrl">
@@ -51,8 +51,15 @@ src/webui/dist /usr/share/mdvl-aes67-linux-daemon/webui
 
 <target name="build" depends="download">
 	<exec executable="cmake" dir="src/daemon" failonerror="true">
+		<!--
+			MUST build with clang otherwise binary doesn't work,
+			silently fails to answer RTSP or start web server
+		-->
+		<env key="CC" value="/usr/bin/clang"/>
+		<env key="CXX" value="/usr/bin/clang++"/>
 		<arg value="-DCPP_HTTPLIB_DIR=../3rdparty/cpp-httplib"/>
 		<arg value="-DRAVENNA_ALSA_LKM_DIR=../3rdparty/ravenna-alsa-lkm"/>
+		<arg value="-DENABLE_TESTS=ON"/>
 		<arg value="-DWITH_AVAHI=ON"/>
 		<arg value="-DFAKE_DRIVER=OFF"/>
 		<arg value="-DWITH_SYSTEMD=ON"/>
