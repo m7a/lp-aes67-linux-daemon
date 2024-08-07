@@ -1,3 +1,9 @@
+mdvl-aes67-linux-daemon (1.0.4) stable; urgency=medium
+
+  * Add example configuration
+
+ -- Ma_Sys.ma Linux-Fan <info@masysma.net>  Wed, 07 Aug 2024 20:03:30 +0200
+
 mdvl-aes67-linux-daemon (1.0.3) stable; urgency=medium
 
   * It was not the clang, it was the cpp-httplib.

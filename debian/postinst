@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+#DEBHELPER#
+
+if [ "$1" = configure ]; then
+	chown mpd:audio /var/lib/aes67-linux-daemon/* || true
+fi

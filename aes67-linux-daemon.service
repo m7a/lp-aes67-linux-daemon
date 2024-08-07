@@ -1,0 +1,11 @@
+[Unit]
+After=network-online.target
+Requires=network-online.target
+Description=Ma_Sys.ma instance of AES67 Linux Daemon
+ 
+[Service]
+User=mpd
+ExecStart=/usr/bin/aes67-daemon -c /var/lib/aes67-linux-daemon/daemon.conf
+ 
+[Install]
+WantedBy=multi-user.target
