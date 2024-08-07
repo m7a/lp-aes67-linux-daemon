@@ -11,8 +11,9 @@
 <property name="mdpc.bdep"
 	>libavahi-client-dev, libboost-test-dev, libboost-program-options-dev,
 	libboost-log-dev, libboost-thread-dev, libboost-system-dev,
-	libboost-dev, config-package-dev, cmake, libsystemd-dev</property>
-<property name="mdpc.recommends" value="dvml-ravenna-alsa-lkm-dkms"/>
+	libboost-dev, config-package-dev, cmake, libsystemd-dev,
+	debhelper-compat (= 13)</property>
+<property name="mdpc.recommends" value="mdvl-ravenna-alsa-lkm-dkms"/>
 <property name="mdpc.descrl">
  AES67 Linux Daemon is a Linux implementation of AES67 interoperability
  standard used to distribute and synchronize real time audio over Ethernet.
