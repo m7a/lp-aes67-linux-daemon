@@ -72,7 +72,7 @@ status.json /var/lib/aes67-linux-daemon
 		<arg value="-DENABLE_TESTS=ON"/>
 		<arg value="-DWITH_AVAHI=ON"/>
 		<arg value="-DFAKE_DRIVER=OFF"/>
-		<arg value="-DWITH_SYSTEMD=OFF"/>
+		<arg value="-DWITH_SYSTEMD=ON"/>
 		<arg value="."/>
 	</exec>
 	<exec executable="make" dir="src/daemon" failonerror="true">

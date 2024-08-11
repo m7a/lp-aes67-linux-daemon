@@ -1,3 +1,9 @@
+mdvl-aes67-linux-daemon (1.0.6) stable; urgency=medium
+
+  * Update to most recent version
+
+ -- Ma_Sys.ma Linux-Fan <info@masysma.net>  Sun, 11 Aug 2024 11:22:41 +0200
+
 mdvl-aes67-linux-daemon (1.0.5) stable; urgency=medium
 
   * Fix debhelper version
