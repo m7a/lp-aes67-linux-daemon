@@ -21,6 +21,8 @@
  The daemon is a Linux process that uses the Merging Technologies ALSA
  RAVENNA/AES67 Driver to handle PTP synchronization and RTP streams and exposes
  a REST interface for configuration and status monitoring.
+ .
+ This package provides a version supplemented by files used at the Ma_Sys.ma.
 </property>
 <property name="mdpc.copyright"
 	value="Copyright (c) 2019 2020 Andrea Bondavalli. All rights reserved."
@@ -32,6 +34,7 @@ src/daemon/aes67-daemon /usr/bin
 src/daemon/scripts /usr/share/mdvl-aes67-linux-daemon
 src/webui/dist /usr/share/mdvl-aes67-linux-daemon/webui
 <!-- may need to be adjusted by the user to work -->
+aes67-linux-daemon.conf /etc/default
 aes67-linux-daemon.service /lib/systemd/system
 daemon.conf /var/lib/aes67-linux-daemon
 status.json /var/lib/aes67-linux-daemon
