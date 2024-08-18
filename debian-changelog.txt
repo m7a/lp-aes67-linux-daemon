@@ -1,3 +1,9 @@
+mdvl-aes67-linux-daemon (1.0.8) stable; urgency=medium
+
+  * Revert wait on startup
+
+ -- Ma_Sys.ma Linux-Fan <info@masysma.net>  Sun, 18 Aug 2024 20:35:05 +0200
+
 mdvl-aes67-linux-daemon (1.0.7) stable; urgency=medium
 
   * Attempt to make startup wait for target IP

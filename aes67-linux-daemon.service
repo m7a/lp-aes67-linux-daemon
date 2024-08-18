@@ -5,8 +5,6 @@ Description=Ma_Sys.ma instance of AES67 Linux Daemon
  
 [Service]
 User=mpd
-# https://stackoverflow.com/questions/35805354/systemd-start-service-at-boot-
-ExecStartPre=/bin/sh -c '. /etc/default/aes67-linux-daemon.conf; while [ -n "$WAIT_IP" ] && ! ping -W 1 -c 1 "$WAIT_IP" > /dev/null 2>&1; do sleep 1; date; done'
 ExecStart=/usr/bin/aes67-daemon -c /var/lib/aes67-linux-daemon/daemon.conf
  
 [Install]
