@@ -11,7 +11,7 @@
 <property name="mdpc.bdep"
 	>libavahi-client-dev, libboost-test-dev, libboost-program-options-dev,
 	libboost-log-dev, libboost-thread-dev, libboost-system-dev,
-	libboost-dev, config-package-dev, cmake, libsystemd-dev, libfaac-dev,
+	libboost-dev, config-package-dev, cmake, libsystemd-dev,
 	debhelper-compat (= 13)</property>
 <property name="mdpc.recommends" value="mdvl-ravenna-alsa-lkm-dkms"/>
 <property name="mdpc.descrl">
@@ -25,7 +25,7 @@
  This package provides a version supplemented by files used at the Ma_Sys.ma.
 </property>
 <property name="mdpc.copyright"
-	value="Copyright (c) 2019 2020 Andrea Bondavalli. All rights reserved."
+	value="Copyright (c) 2019 2024 Andrea Bondavalli. All rights reserved."
 	/>
 <!-- program is GPL 3+ hence LBLOCK should be OK as-is -->
 
@@ -58,9 +58,12 @@ status.json /var/lib/aes67-linux-daemon
 </target>
 
 <target name="build" depends="download">
-	<exec executable="git" dir="src/3rdparty/cpp-httplib" failonerror="true">
-		<arg value="checkout"/>
-		<arg value="42f9f9107f87ad2ee04be117dbbadd621c449552"/>
+	<exec executable="git" dir="src" failonerror="true">
+		<env key="GIT_COMMITTER_NAME"  value="CI"/>
+		<env key="GIT_COMMITTER_EMAIL" value="info@masysma.net"/>
+		<env key="EMAIL"               value="info@masysma.net"/>
+		<arg value="am"/>
+		<arg value="../Make-dependency-on-libfaac-optional.patch"/>
 	</exec>
 	<exec executable="cmake" dir="src/daemon" failonerror="true">
 		<!--
@@ -74,6 +77,7 @@ status.json /var/lib/aes67-linux-daemon
 		<arg value="-DWITH_AVAHI=ON"/>
 		<arg value="-DFAKE_DRIVER=OFF"/>
 		<arg value="-DWITH_SYSTEMD=ON"/>
+		<arg value="-DWITH_STREAMER=OFF"/>
 		<arg value="."/>
 	</exec>
 	<exec executable="make" dir="src/daemon" failonerror="true">

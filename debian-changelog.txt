@@ -1,3 +1,9 @@
+mdvl-aes67-linux-daemon (1.0.9) stable; urgency=medium
+
+  * Update to daemon v2.0.1 and add patch to avoid new build-time dependency.
+
+ -- Ma_Sys.ma Linux-Fan <info@masysma.net>  Sun, 15 Sep 2024 14:35:49 +0200
+
 mdvl-aes67-linux-daemon (1.0.8) stable; urgency=medium
 
   * Revert wait on startup
