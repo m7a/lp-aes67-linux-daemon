@@ -48,23 +48,9 @@ status.json /var/lib/aes67-linux-daemon
 	<masysma_require_artifact masysmaartifact="aes67-webui.tar.gz"
 		masysmaatarget="src/webui"
 		masysmaadef="https://github.com/bondagit/aes67-linux-daemon/releases/latest/download/webui.tar.gz"/>
-	<masysma_require_artifact masysmaartifact="ravenna-alsa-lkm.git"
-		masysmaatarget="src/3rdparty/ravenna-alsa-lkm"
-		masysmaabranch="aes67-daemon"
-		masysmaadef="https://github.com/bondagit/ravenna-alsa-lkm.git"/>
-	<masysma_require_artifact masysmaartifact="cpp-httplib.git"
-		masysmaatarget="src/3rdparty/cpp-httplib"
-		masysmaadef="https://github.com/bondagit/cpp-httplib.git"/>
 </target>
 
 <target name="build" depends="download">
-	<exec executable="git" dir="src" failonerror="true">
-		<env key="GIT_COMMITTER_NAME"  value="CI"/>
-		<env key="GIT_COMMITTER_EMAIL" value="info@masysma.net"/>
-		<env key="EMAIL"               value="info@masysma.net"/>
-		<arg value="am"/>
-		<arg value="../Make-dependency-on-libfaac-optional.patch"/>
-	</exec>
 	<exec executable="cmake" dir="src/daemon" failonerror="true">
 		<!--
 			Optionally build using clang
