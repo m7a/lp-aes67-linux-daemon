@@ -34,8 +34,15 @@ src/daemon/aes67-daemon /usr/bin
 src/daemon/scripts /usr/share/mdvl-aes67-linux-daemon
 src/webui/dist /usr/share/mdvl-aes67-linux-daemon/webui
 aes67-linux-daemon.service /lib/systemd/system
+98-masysma-aes67.conf /etc/alsa/conf.d
+90-masysma-alsa.conf /etc/pipewire/pipewire.conf.d
+90-enable-all.lua.mdvl /usr/share/wireplumber/main.lua.d
 daemon.conf /var/lib/aes67-linux-daemon
 status.json /var/lib/aes67-linux-daemon
+</property>
+
+<property name="mdpc.file.displace">
+usr/share/wireplumber/main.lua.d/90-enable-all.lua.mdvl
 </property>
 
 <dirname property="checkout" file="${ant.file}"/>

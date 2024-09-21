@@ -3,7 +3,7 @@
   {
     "id": 0,
     "enabled": true,
-    "name": "ALSA Source 0",
+    "name": "ALSA MPD",
     "io": "Audio Device",
     "max_samples_per_packet": 96,
     "codec": "L24",
@@ -11,13 +11,13 @@
     "ttl": 15,
     "payload_type": 98,
     "dscp": 34,
-    "refclk_ptp_traceable": false,
-    "map": [ 0 ]
+    "refclk_ptp_traceable": true,
+    "map": [ 0, 1 ]
   }, 
   {
     "id": 1,
     "enabled": true,
-    "name": "ALSA Source 1",
+    "name": "ALSA PIPEW",
     "io": "Audio Device",
     "max_samples_per_packet": 96,
     "codec": "L24",
@@ -25,8 +25,47 @@
     "ttl": 15,
     "payload_type": 98,
     "dscp": 34,
-    "refclk_ptp_traceable": false,
-    "map": [ 1 ]
+    "refclk_ptp_traceable": true,
+    "map": [ 2, 3 ]
+  }, 
+  {
+    "id": 2,
+    "enabled": true,
+    "name": "ALSA PAD 1",
+    "io": "Audio Device",
+    "max_samples_per_packet": 96,
+    "codec": "L24",
+    "address": "239.69.1.12",
+    "ttl": 15,
+    "payload_type": 98,
+    "dscp": 34,
+    "refclk_ptp_traceable": true,
+    "map": [ 4, 5 ]
+  }, 
+  {
+    "id": 3,
+    "enabled": true,
+    "name": "ALSA PAD 2",
+    "io": "Audio Device",
+    "max_samples_per_packet": 96,
+    "codec": "L24",
+    "address": "239.69.1.13",
+    "ttl": 15,
+    "payload_type": 98,
+    "dscp": 34,
+    "refclk_ptp_traceable": true,
+    "map": [ 6, 7 ]
   }  ],
-  "sinks": [  ]
+  "sinks": [
+  {
+    "id": 0,
+    "name": "anubis-mic-ext",
+    "io": "Audio Device",
+    "use_sdp": true,
+    "source": "http://192.168.10.1:8080/api/source/sdp/0",
+    "sdp": "v=0\r\no=- 2102 0 IN IP4 192.168.10.65\r\ns=mic\r\nc=IN IP4 239.1.10.67/15\r\nt=0 0\r\na=clock-domain:PTPv2 0\r\na=ts-refclk:ptp=IEEE1588-2008:30-D6-59-FF-FE-01-EB-FB:0\r\na=mediaclk:direct=0\r\nm=audio 5004 RTP/AVP 98\r\nc=IN IP4 239.1.10.67/15\r\na=rtpmap:98 L24/88200/1\r\na=source-filter: incl IN IP4 239.1.10.67 192.168.10.65\r\na=clock-domain:PTPv2 0\r\na=sync-time:0\r\na=framecount:96\r\na=palign:0\r\na=ptime:1.08843541\r\na=ts-refclk:ptp=IEEE1588-2008:30-D6-59-FF-FE-01-EB-FB:0\r\na=mediaclk:direct=0\r\na=recvonly\r\na=midi-pre2:50040 0,0\r\n",
+    "delay": 192,
+    "ignore_refclk_gmid": true,
+    "map": [ 0 ]
+  }  ]
 }
