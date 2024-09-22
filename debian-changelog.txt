@@ -1,3 +1,9 @@
+mdvl-aes67-linux-daemon (1.0.14) stable; urgency=medium
+
+  * Update buffer sizes to newest findings
+
+ -- Ma_Sys.ma Linux-Fan <info@masysma.net>  Sun, 22 Sep 2024 20:45:40 +0200
+
 mdvl-aes67-linux-daemon (1.0.13) stable; urgency=medium
 
   * Include 91-masysma-sampling.conf
