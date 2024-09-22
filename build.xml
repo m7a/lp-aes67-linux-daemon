@@ -13,7 +13,7 @@
 	libboost-log-dev, libboost-thread-dev, libboost-system-dev,
 	libboost-dev, config-package-dev, cmake, libsystemd-dev,
 	debhelper-compat (= 13)</property>
-<property name="mdpc.recommends" value="mdvl-ravenna-alsa-lkm-dkms"/>
+<property name="mdpc.recommends" value="mdvl-ravenna-alsa-lkm-dkms, mpd"/>
 <property name="mdpc.descrl">
  AES67 Linux Daemon is a Linux implementation of AES67 interoperability
  standard used to distribute and synchronize real time audio over Ethernet.
@@ -37,6 +37,8 @@ aes67-linux-daemon.service /lib/systemd/system
 98-masysma-aes67.conf /etc/alsa/conf.d
 90-masysma-alsa.conf /etc/pipewire/pipewire.conf.d
 90-enable-all.lua.mdvl /usr/share/wireplumber/main.lua.d
+91-masysma-sampling.conf /etc/pipewire/pipewire-pulse.conf.d
+91-masysma-sampling.conf /etc/pipewire/pipewire.conf.d
 daemon.conf /var/lib/aes67-linux-daemon
 status.json /var/lib/aes67-linux-daemon
 </property>
