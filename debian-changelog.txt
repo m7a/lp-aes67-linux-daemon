@@ -1,3 +1,9 @@
+mdvl-aes67-linux-daemon (1.0.15) stable; urgency=medium
+
+  * Update buffer sizes to newest findings.
+
+ -- Ma_Sys.ma Linux-Fan <info@masysma.net>  Tue, 24 Sep 2024 20:52:59 +0200
+
 mdvl-aes67-linux-daemon (1.0.14) stable; urgency=medium
 
   * Update buffer sizes to newest findings
