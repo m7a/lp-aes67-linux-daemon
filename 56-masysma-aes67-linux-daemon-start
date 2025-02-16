@@ -1,0 +1,5 @@
+# Ma_Sys.ma sudo configuration for service aes67-linux-daemon
+# (c) 2025 Ma_Sys.ma, for further info send an e-mail to <info@masysma.net>
+
+Cmnd_Alias	STARTAES67LINUXDAEMON = /usr/bin/systemctl start aes67-linux-daemon.service
+linux-fan	ALL=NOPASSWD: STARTAES67LINUXDAEMON
